@@ -1,0 +1,41 @@
+{% extends "menu/base.html" %}
+{% block title %}{% endblock %}
+
+{% block content %}
+<style>
+	.center {
+	  margin: auto;
+	  width: 50%;
+	  border: 3px solid purple;
+	  padding: 10px;
+	}
+	body, html {
+    	height:100%;
+    	width:100%;
+    	background-color: #1fc8db;
+    	background-image: linear-gradient(140deg, #EADEDB 0%, #BC70A4 50%, #BFD641 75%);
+    	color:white;
+    	opacity:0.95;
+	}
+	.center2 {
+		text-align: center;
+		color: black;
+	}
+</style>
+<main>
+    <section>
+		<div class="center">
+			<h1 class="center2">{{title}} posts</h1>
+			<h2 class="center2">{{ children }}</h2>
+		</div>
+    </section>
+	<div class="center">
+		{% for post in object_list%}
+		<div>
+			<h2 class="center2">{{post}}</h2>
+			<h1 class="center2">{{content}}</h1>
+		</div>
+		{% endfor %}
+    </div>
+</main>
+{% endblock %}

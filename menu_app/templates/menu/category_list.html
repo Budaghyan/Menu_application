@@ -1,0 +1,51 @@
+{% extends "menu/base.html" %}
+{% load mptt_tags %}
+
+{% block title %}List of categories{% endblock %}
+
+{% block content %}
+<head>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
+    <style>
+        .pure-menu-heading {
+            color: #308d46;
+        }
+
+        .custom-display {
+            /* To limit the menu width to
+            the content of the menu: */
+            display: inline-block;
+        }
+        body, html {
+    		height:100%;
+    		width:100%;
+    		background-color: #1fc8db;
+    		background-image: linear-gradient(140deg, #EADEDB 0%, #BC70A4 50%, #BFD641 75%);
+    		color:white;
+    		opacity:0.95;
+		}
+    </style>
+</head>
+<body>
+	<div>
+		<div class=" pure-menu custom-display">
+			<ul class="pure-menu-list">
+			{% recursetree object_list %}
+				<li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+				<a class="pure-menu-link" style="color: black; font-size: 24px;" href="{{node.get_absolute_url}}">{{node.title}}</a>
+				{% if not node.is_leaf_node %}
+					<ul class="children pure-menu-children">
+						<li class="pure-menu-item">
+						{{ children }}
+						</li>
+					</ul>
+				{% endif %}
+				</li>
+			{% endrecursetree %}
+			</ul>
+		</div>
+	</div>
+</body>
+{% endblock %}
